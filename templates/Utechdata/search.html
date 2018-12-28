@@ -1,0 +1,122 @@
+{% block content %}
+    <div class="row" style="width: 100%">
+        <div class="col-lg-12" style="width: 100%;">
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        {#                        {% if forloop.counter0 == 1 %}#}
+                        <div class="alert alert-danger">
+                            <strong>{{ error }}</strong>
+                        </div>
+                        {#                        {% endif %}#}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            <form method="POST" action="{% url 'udata:fetch-data' %}">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="inputEmail4" style="font-size: x-large">What:</label>
+                        <br><span class="help"
+                                  style="font-size: smaller; padding-top: 0%;"> Company or keywords</span>
+                        {% if dd.what %}
+                            <input type="text" name="what" value="{{ dd.what }}" class="form-control" id="inputEmail4">
+                        {% else %}
+                            <input type="text" name="what" class="form-control" id="inputEmail4">
+                        {% endif %}
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inputEmail4" style="font-size: x-large">Where:</label>
+                        <br><span class="help"
+                                  style="font-size: smaller; padding-top: 0%;">City, State or Zip code</span>
+                        {% if dd.where %}
+                            <input type="text" name="where" value="{{ dd.where }}" class="form-control"
+                                   id="inputPassword4">
+                        {% else %}
+                            <input type="text" name="where" value="" class="form-control" id="inputPassword4">
+                        {% endif %}
+                    </div>
+                    <label for="inputPassword4">&nbsp;</label>
+                    <br><span class="help" style="font-size: smaller;"> &nbsp;</span>
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-primary btn-lg" style="margin-top:10%">Search</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    {#    <div class="container">#}
+    {#        <div class="col-md-12">#}
+    {#        <ul>#}
+    {#            <li >companies</li>#}
+    {#        {% for d in dd %}#}
+    {#            <li style="color:red; font-size: 3em;">{{ d.company_name }}</li>#}
+    {#            <li style="color:red; font-size: 3em;">{{ d.city }}</li>#}
+    {#            <li style="color:red; font-size: 3em;">{{ d.state }}</li>#}
+    {#            <li style="color:red; font-size: 3em;">{{ d.primary_sic_description }}</li>#}
+    {#        {% endfor %}#}
+    {#        </ul>#}
+    {#        </div>#}
+    {#    </div>#}
+    {% if dd.dd %}
+        {% if dd.graph %}
+            <div class="container col-lg-12" style="width: 100%">
+                {% if user.is_authenticated %}
+                    <h7>You are viewing all records.</h7>
+                {% else %}
+                    <h7>You are viewing only first 20 records. Want more? <a href="/accounts/login/">Login</a></h7>
+                {% endif %}
+                {{ dd.graph|safe }}
+            </div>
+        {% endif %}
+        {#        <div class="container" style="background-color: #337ab7; border: solid 3px #337ab7; border-radius: 5px;">#}
+        {#            <div class="row" style="display: block;">#}
+        {#                <div class="col-lg-12">#}
+        {#                    <table class="table">#}
+        {#                        <thead>#}
+        {#                        <tr>#}
+        {#                            <th scope="col">#</th>#}
+        {#                            <th scope="col">Company Name</th>#}
+        {#                            <th scope="col">City</th>#}
+        {#                            <th scope="col">State</th>#}
+        {#                            <th scope="col">Zip Code</th>#}
+        {#                            <th scope="col">Street Address</th>#}
+        {#                            <th scope="col">Employee Size</th>#}
+        {#                            <th scope="col">Sales Volume</th>#}
+        {#                            <th scope="col">Primary Sic</th>#}
+        {#                            <th scope="col">Primary Sic Description</th>#}
+        {#                        </tr>#}
+        {#                        </thead>#}
+        {#                        <tbody>#}
+        {#                        {% for d in dd.dd %}#}
+        {#                            <tr>#}
+        {#                                <th scope="row">{{ d.id }}</th>#}
+        {#                                <td>{{ d.company_name }}</td>#}
+        {#                                <td>{{ d.city }}</td>#}
+        {#                                <td>{{ d.state }}</td>#}
+        {#                                <td>{{ d.zip_codes }}</td>#}
+        {#                                <td>{{ d.street_address }}</td>#}
+        {#                                <td>{{ d.actual_employee_size }}</td>#}
+        {#                                <td>{{ d.actual_sales_volume }}</td>#}
+        {#                                <td>{{ d.primary_sic }}</td>#}
+        {#                                <td>{{ d.primary_sic_description }}</td>#}
+        {#                            </tr>#}
+        {#                        {% endfor %}#}
+        {#                        </tbody>#}
+        {#                    </table>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+    {% elif dd.message %}
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible ">
+                {{ dd.message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

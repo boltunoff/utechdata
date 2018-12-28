@@ -1,0 +1,151 @@
+{% extends 'Utechdata/layout.html' %}
+<style>
+    .input-group{
+        width: 100%;
+    }
+</style>
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+{#<h1>{% trans "Sign Up" %}</h1>#}
+
+{#<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>#}
+
+<form class="signup" id="signup_form" method="post" action="/accounts/signup/">
+  {% csrf_token %}
+{#  {{ form.as_p }}#}
+<div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-8">
+                <h2>Register New User</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <h2 style="color: red; font-size: 1em;"> {{ form.errors }}</h2>
+            </div>
+            <div class="col-lg-3 field-label-responsive">
+                <label for="id_username">Username:</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input name="username" class="form-control" placeholder="Username" autofocus="autofocus" minlength="1" maxlength="150" required="" id="id_username" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="name">First Name:</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="first_name" class="form-control" id="first_name"
+                               placeholder="John" required >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="email">Last Name</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="last_name" class="form-control" id="last_name"
+                               placeholder="Doe" required >
+                    </div>
+                </div>
+            </div>
+{#            <div class="col-md-3">#}
+{#                <div class="form-control-feedback">#}
+{#                        <span class="text-danger align-middle">#}
+{#                            <!-- Put e-mail validation error messages here -->#}
+{#                        </span>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="id_email">E-mail:</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+
+                        <input name="email" class="form-control" placeholder="E-mail address" required="" id="id_email" type="email">
+                    </div>
+                </div>
+            </div>
+        </div>
+{#        <div class="row">#}
+{#            <div class="col-lg-3 field-label-responsive">#}
+{#                <label for="password">Phone</label>#}
+{#            </div>#}
+{#            <div class="col-lg-8">#}
+{#                <div class="form-group has-danger">#}
+{#                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">#}
+{#                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>#}
+{#                        <input type="tel" name="phone" class="form-control" id="phone"#}
+{#                               placeholder="1-(555)-555-5555" required>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="id_password1">Password:</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem">
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                        <input name="password1" class="form-control" placeholder="Password" required="" id="id_password1" type="password">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="id_password2">Password (again):</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem" >
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                        <input name="password2" class="form-control" placeholder="Password (again)" required="" id="id_password2" type="password">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <p class="pull-right"> Have an account already? <strong> <a href="/accounts/login/"> Login Here!</a></strong> </p>
+            </div>
+            <div class="col-lg-5">
+                <button type="submit" class="btn btn-primary btn-lg pull-right button"><i class="fa fa-user-plus"></i> Register</button>
+            </div>
+        </div>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+{#  <button type="submit">{% trans "Sign Up" %} &raquo;</button>#}
+</form>
+
+{% endblock %}

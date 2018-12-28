@@ -1,0 +1,19 @@
+{% load static %}
+{% block header %}
+    {% include 'Utechdata/dashboard-head.html' %}
+{% endblock %}
+{% block body %}
+    {% block dashboard_header %}
+        {% include 'Utechdata/dashboard-header.html' %}
+    {% endblock %}
+    {% block navbar %}
+        {% include 'Utechdata/dashboard-nav.html' %}
+    {% endblock %}
+    <main class="mdl-layout__content mdl-color--grey-100">
+    {% block content %}
+        <h2 style="color: red"> This is the profile Page</h2>
+    {% endblock %}
+    {% block footer %}
+    {% include 'Utechdata/dashboard-footer.html' %}
+    {% endblock %}
+{% endblock %}

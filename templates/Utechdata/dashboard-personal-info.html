@@ -1,0 +1,37 @@
+{% extends 'Utechdata/dashboard-base.html' %}
+
+{% block content %}
+<div class="wrapper">
+		<div class="wrapper-inner">
+			<div class="box-wrapper">
+				<div class="box">
+					<div class="avatar">
+{#						<img src="http://remtsoy.com/experiments/user_card/img/avatar.jpg">#}
+                        {% load avatar_tags %}
+                    {% avatar user 128 %}
+					</div>
+					<div class="box-inner">
+						<h3 class="name">{{ user.first_name }} {{ user.last_name }}</h3>
+						<h4 class="occupation">{{ user.email }}</h4>
+						<p class="location"><i class="fa fa-map-marker"></i>{{ user.date_joined }}</p>
+                        <h3 class="followers-title text-capitalize"><strong>Signed Up By:</strong> {{ user.socialaccount_set.all.0.provider }}</h3>
+						<ul class="followers-list">
+							<li><a href="#"><img src="http://remtsoy.com/experiments/user_card/img/follower-1.jpg" alt=""></a></li>
+							<li><a href="#"><img src="http://remtsoy.com/experiments/user_card/img/follower-2.jpg" alt=""></a></li>
+							<li><a href="#"><img src="http://remtsoy.com/experiments/user_card/img/follower-3.jpg" alt=""></a></li>
+							<li><a href="#"><img src="http://remtsoy.com/experiments/user_card/img/follower-4.jpg" alt=""></a></li>
+							<li class="follow-list-item"><a href="#"><i class="fa fa-plus"></i></a></li>
+						</ul>
+					</div>
+					<ul class="social-list">
+						<li><a href="#" class="fa fa-facebook"></a></li>
+						<li><a href="#" class="fa fa-dribbble"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-pinterest"></a></li>
+						<li><a href="#" class="fa fa-linkedin"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

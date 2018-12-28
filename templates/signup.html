@@ -1,0 +1,142 @@
+{% extends 'Utechdata/layout.html' %}
+<style>
+    .input-group{
+        width: 100%;
+    }
+</style>
+
+{% block content %}
+    <div class="container">
+    <form class="form-horizontal" role="form" method="POST" action="{% url 'users:signup' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-8">
+                <h2>Register New User</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <h2 style="color: red; font-size: 1em;"> {{ form.errors }}</h2>
+            </div>
+            <div class="col-lg-3 field-label-responsive">
+                <label for="name">Username:</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="username" class="form-control" id="username"
+                               placeholder="johndoe01" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="name">First Name:</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="first_name" class="form-control" id="first_name"
+                               placeholder="John" required >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="email">Last Name</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="last_name" class="form-control" id="last_name"
+                               placeholder="Doe" required >
+                    </div>
+                </div>
+            </div>
+{#            <div class="col-md-3">#}
+{#                <div class="form-control-feedback">#}
+{#                        <span class="text-danger align-middle">#}
+{#                            <!-- Put e-mail validation error messages here -->#}
+{#                        </span>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="password">Email</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="email" name="email" class="form-control" id="email"
+                               placeholder="example@gmail.com" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#        <div class="row">#}
+{#            <div class="col-lg-3 field-label-responsive">#}
+{#                <label for="password">Phone</label>#}
+{#            </div>#}
+{#            <div class="col-lg-8">#}
+{#                <div class="form-group has-danger">#}
+{#                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">#}
+{#                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>#}
+{#                        <input type="tel" name="phone" class="form-control" id="phone"#}
+{#                               placeholder="1-(555)-555-5555" required>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem">
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                        <input type="password" name="password1" class="form-control"
+                               id="password" placeholder="Password" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 field-label-responsive">
+                <label for="password">Confirm Password</label>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%">
+                        <div class="input-group-addon" style="width: 2.6rem" >
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                        <input type="password" name="password2" class="form-control"
+                               id="password_confirm" placeholder="Password" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p class="pull-right"> Have an account already? <strong> <a href="{% url 'users:login' %}"> Login Here!</a></strong> </p>
+            </div>
+            <div class="col-lg-5">
+                <button type="submit" class="btn btn-primary btn-lg pull-right button"><i class="fa fa-user-plus"></i> Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
